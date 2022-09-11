@@ -1,4 +1,4 @@
-﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 Console.WriteLine("Введите количество строк двумерного массива: ");
 int m = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите количество столбцов двумерного массива: ");
@@ -7,23 +7,20 @@ int[,] twoDimenArr = new int[m, n];
 Random rand = new Random();
 void PrintArray(int[,] arr) {
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) {
-            Console.Write($"{arr[i, j]} "); 
-            }
-        Console.WriteLine();
-        }}
-void NumInArray(int[,] arr) {
-    int isnum = 0;
-    Console.WriteLine("Введите число: ");
-    int num = Convert.ToInt32(Console.ReadLine());
-    foreach (int i in arr) if (i == num) isnum = 1;
-    if (isnum == 1) Console.Write($"{num} -> присутствует в мессиве");
-    else Console.Write($"{num} -> такого числа в массиве нет");
-}
+        for (int j = 0; j < n; j++) Console.Write($"{arr[i, j]} ");
+        Console.WriteLine("");
+    }}
 void RandArray(int[,] arr) {
     for (int i = 0; i < m; i++) {
-        for (int j = 0; j < n; j++) { arr[i,j] = Convert.ToInt32(rand.Next(1, 1000)/10.0); }
+        for (int j = 0; j < n; j++) arr[i,j] = Convert.ToInt32(rand.Next(1, 1000)/10.0);
+    }}
+void average(int[,] arr){
+    for (int i = 0; i < arr.GetLength(0); i++) 
+    {
+        int srAr = 0;
+        for (int t = 0; t < arr.GetLength(1); t++) srAr += arr[t, i];
+        Console.WriteLine($"Cреднее арифметическое число столбца {i+1} = {(float)srAr/m}");
     }}
 RandArray(twoDimenArr);
 PrintArray(twoDimenArr);
-NumInArray(twoDimenArr);
+average(twoDimenArr);
